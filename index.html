@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thumbnail Animator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <button id="select-folder-btn">Select Folder</button>
+            <div class="nav-buttons">
+                <button id="back-btn" class="nav-btn" title="Back" disabled>←</button>
+                <button id="forward-btn" class="nav-btn" title="Forward" disabled>→</button>
+            </div>
+            <div id="breadcrumb-container" class="breadcrumb-container">
+                <span id="current-path">No folder selected</span>
+            </div>
+            <div class="filter-buttons">
+                <button id="filter-all" class="filter-btn active">All</button>
+                <button id="filter-videos" class="filter-btn">Videos</button>
+                <button id="filter-images" class="filter-btn">Images</button>
+                <button id="filter-audio" class="filter-btn">Audio</button>
+            </div>
+            <div class="settings-container">
+                <button id="settings-btn" class="settings-btn" title="Settings">⚙️</button>
+                <div id="settings-dropdown" class="settings-dropdown hidden">
+                    <div class="settings-item">
+                        <label class="settings-label">
+                            <span>Layout Mode:</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="layout-mode-toggle">
+                                <span class="toggle-slider"></span>
+                            </div>
+                            <span class="toggle-label" id="layout-mode-label">Dynamic</span>
+                        </label>
+                    </div>
+                    <div class="settings-item">
+                        <label class="settings-label">
+                            <span>Remember Last Folder:</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="remember-folder-toggle" checked>
+                                <span class="toggle-slider"></span>
+                            </div>
+                            <span class="toggle-label" id="remember-folder-label">On</span>
+                        </label>
+                    </div>
+                    <div class="settings-item">
+                        <label class="settings-label">
+                            <span>Sort By:</span>
+                            <select id="sort-type-select" class="settings-select">
+                                <option value="name">Name</option>
+                                <option value="date">Date</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="settings-item">
+                        <label class="settings-label">
+                            <span>Sort Order:</span>
+                            <select id="sort-order-select" class="settings-select">
+                                <option value="ascending">Ascending</option>
+                                <option value="descending">Descending</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <input type="text" id="search-box" placeholder="Search files..." autocomplete="off">
+        </header>
+        <main id="grid-container">
+            <!-- Videos and folders will be injected here -->
+        </main>
+        <div id="lightbox" class="hidden">
+            <div class="lightbox-content">
+                <video id="lightbox-video" controls></video>
+                <img id="lightbox-image" style="display: none;">
+                <button id="close-lightbox">&times;</button>
+                <div class="lightbox-file-info">
+                    <div class="lightbox-filename" id="lightbox-filename"></div>
+                    <div class="lightbox-copy-buttons">
+                        <button class="copy-btn" id="copy-path-btn" title="Copy file path">Copy Path</button>
+                        <button class="copy-btn" id="copy-name-btn" title="Copy file name">Copy Name</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="context-menu" class="context-menu hidden">
+            <div class="context-menu-item" data-action="open">Open</div>
+            <div class="context-menu-item" data-action="open-with">Open With</div>
+            <div class="context-menu-item" data-action="rename">Rename</div>
+            <div class="context-menu-item" data-action="reveal">Reveal in Explorer</div>
+            <div class="context-menu-divider"></div>
+            <div class="context-menu-item context-menu-item-danger" data-action="delete">Delete</div>
+        </div>
+        <div id="rename-dialog" class="rename-dialog hidden">
+            <div class="rename-dialog-content">
+                <h3>Rename File</h3>
+                <input type="text" id="rename-input" placeholder="Enter new name">
+                <div class="rename-dialog-buttons">
+                    <button id="rename-cancel-btn">Cancel</button>
+                    <button id="rename-confirm-btn">Rename</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+</html>

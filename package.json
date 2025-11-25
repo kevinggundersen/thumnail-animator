@@ -7,7 +7,8 @@
     "start": "electron .",
     "build": "electron-builder",
     "build:win": "electron-builder --win",
-    "dist": "electron-builder --publish=never"
+    "dist": "electron-builder --publish=never",
+    "release": "electron-builder --publish=always"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,11 @@
     "productName": "Thumbnail Animator",
     "directories": {
       "output": "dist"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "kevinggundersen",
+      "repo": "thumnail-animator"
     },
     "files": [
       "**/*",
